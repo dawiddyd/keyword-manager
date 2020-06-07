@@ -18,7 +18,9 @@ export class CategoryService {
   }
 
   deleteCategory(id: number): boolean {
-    this.data = this.data.filter(c => c.id !== id);
+    const category = this.data.find(c => c.id === id);
+    const index = this.data.indexOf(category);
+    this.data.splice(index, 1);
     return true;
   }
 }
