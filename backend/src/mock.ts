@@ -4,63 +4,63 @@ export const data: Category[] = [
   {
     id: 1, name: 'cars', keywords: [
       {
-        id: 2,
+        id: 1,
         name: 'audi',
       },
       {
-        id: 3,
+        id: 2,
         name: 'bmw',
       },
       {
-        id: 4,
+        id: 3,
         name: 'tires',
       },
     ],
   },
   {
-    id: 5, name: 'bikes', keywords: [
+    id: 2, name: 'bikes', keywords: [
       {
-        id: 6,
+        id: 1,
         name: 'bianchi',
       },
     ],
   },
   {
-    id: 7, name: 'fruit', keywords: [
+    id: 3, name: 'fruit', keywords: [
       {
-        id: 8,
+        id: 1,
         name: 'banana',
       },
       {
-        id: 9,
+        id: 2,
         name: 'avocado',
       },
     ],
   },
   {
-    id: 10, name: 'animals', keywords: [
+    id: 4, name: 'animals', keywords: [
       {
-        id: 11,
+        id: 1,
         name: 'cat',
       },
       {
-        id: 12,
+        id: 2,
         name: 'dog',
       },
       {
-        id: 13,
+        id: 3,
         name: 'otter',
       },
     ],
   },
   {
-    id: 14, name: 'drinks', keywords: [
+    id: 5, name: 'drinks', keywords: [
       {
-        id: 15,
+        id: 1,
         name: 'tea',
       },
       {
-        id: 16,
+        id: 2,
         name: 'water',
       },
     ],
