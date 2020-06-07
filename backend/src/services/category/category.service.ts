@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { data } from '../../mock';
 import { Category } from '../../category.model';
-import { Keyword } from '../../keyword.model';
 
 @Injectable()
 export class CategoryService {
