@@ -6,7 +6,7 @@ export class Category {
   @Field(type => Int)
   id: number;
 
-  @Field()
+  @Field(type => String)
   name: string;
 
   @Field(type => [Keyword])

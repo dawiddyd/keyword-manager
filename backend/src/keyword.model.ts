@@ -5,6 +5,6 @@ export class Keyword {
   @Field(type => Int)
   id: number;
 
-  @Field()
+  @Field(type => String)
   name: string;
 }
