@@ -7,18 +7,18 @@ export class CategoryService {
   data = data;
 
   getCategory(id: number): Category {
-    return this.data.find(c => c.id == id);
+    return this.data.find(c => c.id === id);
   }
 
   createCategory(name: string): Category {
-    const id = this.data.length;
+    const id = this.data.length + 1;
     const newCategory = { id: id, name, keywords: [] };
     this.data.push(newCategory);
-    return this.data.find(c => c.name == name);
+    return newCategory;
   }
 
   deleteCategory(id: number): boolean {
-    this.data = this.data.filter(c => c.id != id);
+    this.data = this.data.filter(c => c.id !== id);
     return true;
   }
 }
