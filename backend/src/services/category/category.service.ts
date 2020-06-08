@@ -7,7 +7,11 @@ export class CategoryService {
   data = data;
 
   getCategory(id: number): Category {
-    return this.data.find(c => c.id === id);
+    const category = this.data.find(c => c.id === id);
+    if (!category) {
+      throw new NotFoundException(`Cannot find category with id: ${id}`);
+    }
+    return category;
   }
 
   createCategory(name: string): Category {
