@@ -11,7 +11,7 @@ export class CategoryService {
   }
 
   createCategory(name: string): Category {
-    const id = this.data.length + 1;
+    const id = Math.max(0, ...this.data.map(c => c.id)) + 1;
     const newCategory = { id: id, name, keywords: [] };
     this.data.push(newCategory);
     return newCategory;

@@ -16,7 +16,7 @@ export class KeywordService {
 
   createKeyword(categoryId: number, name: string): Keyword[] {
     const category = this.data.find(c => c.id === categoryId);
-    const newId = category.keywords.length + 1;
+    const newId = Math.max(0, ...category.keywords.map(k => k.id)) + 1;
     const newKeyword = { id: newId, name };
     category.keywords.push(newKeyword);
     let index = this.data.indexOf(category);
