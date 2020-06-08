@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { data } from '../../mock';
 import { Category } from '../../category.model';
 
@@ -17,10 +17,13 @@ export class CategoryService {
     return newCategory;
   }
 
-  deleteCategory(id: number): boolean {
+  deleteCategory(id: number): Category {
     const category = this.data.find(c => c.id === id);
+    if (!category) {
+      throw new NotFoundException(`Cannot find category with id: ${id}`);
+    }
     const index = this.data.indexOf(category);
     this.data.splice(index, 1);
-    return true;
+    return category;
   }
 }

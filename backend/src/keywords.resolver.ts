@@ -1,4 +1,4 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Int, Query, Resolver } from '@nestjs/graphql';
 import { Category } from './category.model';
 import { Keyword } from './keyword.model';
 import { data } from './mock';
@@ -32,8 +32,8 @@ export class KeywordsResolver {
     return this.categoryService.createCategory(name);
   }
 
-  @Mutation(returns => Boolean, { name: 'deleteCategory' })
-  deleteCategory(@Args('id') id: number): boolean {
+  @Mutation(returns => Category, { name: 'deleteCategory' })
+  deleteCategory(@Args('id') id: number): Category {
     return this.categoryService.deleteCategory(id);
   }
 
@@ -42,8 +42,8 @@ export class KeywordsResolver {
     return this.keywordService.createKeyword(categoryId, name);
   }
 
-  @Mutation(returns => Boolean, { name: 'deleteKeyword' })
-  deleteKeyword(@Args('categoryId') categoryId: number, @Args('keywordId') keywordId: number): boolean {
+  @Mutation(returns => Int, { name: 'deleteKeyword' })
+  deleteKeyword(@Args('categoryId') categoryId: number, @Args('keywordId') keywordId: number): number {
     return this.keywordService.deleteKeyword(categoryId, keywordId);
   }
 }

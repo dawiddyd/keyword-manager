@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { data } from '../../mock';
 import { Keyword } from '../../keyword.model';
 
@@ -24,12 +24,19 @@ export class KeywordService {
     return this.data.find(c => c.id === categoryId).keywords;
   }
 
-  deleteKeyword(categoryId: number, keywordId: number): boolean {
+  deleteKeyword(categoryId: number, keywordId: number): number {
     const category = this.data.find(c => c.id === categoryId);
-    const newCategoryKeywords: Keyword[] = category.keywords.filter(k => k.id !== keywordId);
-    category.keywords = newCategoryKeywords;
-    this.data = this.data.filter(c => c.id !== categoryId);
-    this.data.push(category);
-    return true;
+    if (!category) {
+      throw new NotFoundException(`Cannot find category with id: ${categoryId}`);
+    }
+    const keyword = category.keywords.find(k => k.id === keywordId);
+    if (!keyword) {
+      throw new NotFoundException(`Cannot find keyword with id: ${keywordId}`);
+    }
+    const keywordIndex = category.keywords.indexOf(keyword);
+    category.keywords.splice(keywordIndex, 1);
+    const categoryIndex = this.data.indexOf(category);
+    this.data[categoryIndex] = category;
+    return keywordId;
   }
 }
