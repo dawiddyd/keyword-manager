@@ -6,7 +6,9 @@ import * as serviceWorker from './serviceWorker';
 import {ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from '@apollo/client';
 
 const client = new ApolloClient({
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+        addTypename: false,
+    }),
     link: new HttpLink({
         uri: 'http://localhost:4000/graphql',
     })
