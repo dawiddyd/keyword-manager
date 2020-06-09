@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import {useQuery} from '@apollo/client';
 import {GET_CATEGORIES} from "./queries";
 import {Category} from "./models/category.model";
@@ -10,12 +10,13 @@ function App() {
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
+
     return (
         <div className="App">
             <table>
                 <thead>
                 <tr>
-                    <td>Category</td>
+                    <td>Categories</td>
                     <td>Keywords</td>
                     <td></td>
                 </tr>
