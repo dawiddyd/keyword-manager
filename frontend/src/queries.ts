@@ -32,6 +32,7 @@ export const DELETE_CATEGORY = gql`
     mutation deleteCategory($id: Float!) {
         deleteCategory(id: $id) {
             id
+            name
         }
     }
 `;

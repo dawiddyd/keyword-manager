@@ -4,6 +4,7 @@ import {Keyword as KeywordModel} from "../../models/keyword.model";
 import {Keyword} from "../keyword";
 import {useMutation} from "@apollo/client";
 import {CREATE_KEYWORD, DELETE_CATEGORY, GET_CATEGORIES} from "../../queries";
+import {toast} from "react-toastify";
 
 interface OwnProps {
     data: Category[];
@@ -18,6 +19,9 @@ const _KeywordsTable = (props: OwnProps) => {
                 query: GET_CATEGORIES,
                 data: {categories: categories.concat([createKeyword])},
             });
+        },
+        onCompleted(data) {
+            toast(`Successfully created keyword ${data.createKeyword.pop().name}`);
         }
     });
 
@@ -28,6 +32,9 @@ const _KeywordsTable = (props: OwnProps) => {
                 query: GET_CATEGORIES,
                 data: {categories: categories.filter(c => c.id !== deleteCategory.id)},
             });
+        },
+        onCompleted(data) {
+            toast(`Successfully removed category ${data.deleteCategory.name}`);
         }
     });
 
