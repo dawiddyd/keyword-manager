@@ -10,7 +10,6 @@ import {NewKeywordForm} from "../new-keyword-form"
 
 interface OwnProps {
     data: Category[];
-    className: string;
 }
 
 const _KeywordsTable = (props: OwnProps) => {
@@ -30,9 +29,9 @@ const _KeywordsTable = (props: OwnProps) => {
 
 
     return (
-        <div>
+        <div className="table-wrapper">
             <NewCategoryForm></NewCategoryForm>
-            <table className={props.className}>
+            <table className="table keywords-table">
                 <thead>
                 <tr>
                     <th>Categories</th>
