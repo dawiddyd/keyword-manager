@@ -15,7 +15,7 @@ function App() {
     return (
         <div className="App">
             <ToastContainer/>
-            <KeywordsTable data={data.categories}></KeywordsTable>
+            <KeywordsTable className="keywords-table" data={data.categories}></KeywordsTable>
         </div>
     );
 }
