@@ -3,7 +3,7 @@ import {Category} from "../../models/category.model";
 import {Keyword as KeywordModel} from "../../models/keyword.model";
 import {Keyword} from "../keyword";
 import {useMutation} from "@apollo/client";
-import {CREATE_KEYWORD, DELETE_CATEGORY, GET_CATEGORIES} from "../../queries";
+import {DELETE_CATEGORY, GET_CATEGORIES} from "../../queries";
 import {toast} from "react-toastify";
 import {NewCategoryForm} from "../new-category-form";
 import {NewKeywordForm} from "../new-keyword-form"
