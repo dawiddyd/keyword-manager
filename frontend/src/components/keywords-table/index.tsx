@@ -6,6 +6,7 @@ import {useMutation} from "@apollo/client";
 import {CREATE_KEYWORD, DELETE_CATEGORY, GET_CATEGORIES} from "../../queries";
 import {toast} from "react-toastify";
 import {NewCategoryForm} from "../new-category-form";
+import {NewKeywordForm} from "../new-keyword-form"
 
 interface OwnProps {
     data: Category[];
@@ -13,18 +14,6 @@ interface OwnProps {
 }
 
 const _KeywordsTable = (props: OwnProps) => {
-    const [createKeyword] = useMutation(CREATE_KEYWORD, {
-        update(cache, {data: {createKeyword}}) {
-            const categories = cache.readQuery<{ categories: Category[] }>({query: GET_CATEGORIES})!.categories;
-            cache.writeQuery({
-                query: GET_CATEGORIES,
-                data: {categories: categories.concat([createKeyword])},
-            });
-        },
-        onCompleted(data) {
-            toast(`Successfully created keyword ${data.createKeyword.pop().name}`);
-        }
-    });
 
     const [deleteCategory] = useMutation(DELETE_CATEGORY, {
         update(cache, {data: {deleteCategory}}) {
@@ -65,15 +54,7 @@ const _KeywordsTable = (props: OwnProps) => {
                             )}
                         </td>
                         <td className="category-action">
-                            <button onClick={async () => {
-                                await createKeyword({
-                                    variables: {
-                                        categoryId: c.id,
-                                        name: `test${c.keywords.length}`
-                                    }
-                                });
-                            }}>+
-                            </button>
+                            <NewKeywordForm categoryId={c.id}></NewKeywordForm>
                         </td>
                     </tr>)}
                 </tbody>
