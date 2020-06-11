@@ -3,6 +3,8 @@ import './App.scss';
 import {useQuery} from '@apollo/client';
 import {GET_CATEGORIES} from "./queries";
 import {KeywordsTable} from "./components/keywords-table";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
     const {loading, error, data} = useQuery(GET_CATEGORIES);
@@ -12,6 +14,7 @@ function App() {
 
     return (
         <div className="App">
+            <ToastContainer/>
             <KeywordsTable data={data.categories}></KeywordsTable>
         </div>
     );
