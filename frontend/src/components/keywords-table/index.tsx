@@ -35,9 +35,9 @@ const _KeywordsTable = (props: OwnProps) => {
             <table className={props.className}>
                 <thead>
                 <tr>
-                    <td>Categories</td>
-                    <td>Keywords</td>
-                    <td></td>
+                    <th>Categories</th>
+                    <th>Keywords</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
