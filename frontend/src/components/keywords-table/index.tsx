@@ -13,10 +13,15 @@ const _KeywordsTable = (props: OwnProps) => {
     const [categoryId, setCategoryId] = useState();
     const refetchQueries = [{query: GET_CATEGORIES}];
     const [createKeyword] = useMutation(CREATE_KEYWORD, {
-        onCompleted: (keywords) => {
-            console.log(props.data.find((c: Category) => c.id === categoryId)!.keywords);
+        update(cache, {data: {createKeyword}}) {
+            const categories = cache.readQuery<{ categories: Category[] }>({query: GET_CATEGORIES})!.categories;
+            cache.writeQuery({
+                query: GET_CATEGORIES,
+                data: {categories: categories.concat([createKeyword])},
+            });
         }
     });
+
     const [deleteKeyword] = useMutation(DELETE_KEYWORD, {refetchQueries: refetchQueries});
 
     return (
