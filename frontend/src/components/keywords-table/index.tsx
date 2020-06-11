@@ -1,17 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Category} from "../../models/category.model";
 import {Keyword as KeywordModel} from "../../models/keyword.model";
 import {Keyword} from "../keyword";
 import {useMutation} from "@apollo/client";
 import {CREATE_KEYWORD, DELETE_CATEGORY, GET_CATEGORIES} from "../../queries";
 import {toast} from "react-toastify";
+import {NewCategoryForm} from "../new-category-form";
 
 interface OwnProps {
     data: Category[];
+    className: string;
 }
 
 const _KeywordsTable = (props: OwnProps) => {
-    const [categoryId, setCategoryId] = useState();
     const [createKeyword] = useMutation(CREATE_KEYWORD, {
         update(cache, {data: {createKeyword}}) {
             const categories = cache.readQuery<{ categories: Category[] }>({query: GET_CATEGORIES})!.categories;
@@ -40,42 +41,44 @@ const _KeywordsTable = (props: OwnProps) => {
 
 
     return (
-        <table>
-            <thead>
-            <tr>
-                <td>Categories</td>
-                <td>Keywords</td>
-                <td></td>
-            </tr>
-            </thead>
-            <tbody>
-            {props.data.map((c: Category, index: number) =>
-                <tr key={index}>
-                    <td onClick={() => deleteCategory({
-                        variables: {
-                            id: c.id,
-                        }
-                    })}>{c.name}</td>
-                    <td>
-                        {c.keywords.map((k: KeywordModel, index: number) =>
-                            <Keyword name={k.name} keywordId={k.id} categoryId={c.id} key={index}></Keyword>
-                        )}
-                    </td>
-                    <td>
-                        <button onClick={async () => {
-                            await setCategoryId(c.id);
-                            await createKeyword({
-                                variables: {
-                                    categoryId: c.id,
-                                    name: `test${c.keywords.length}`
-                                }
-                            });
-                        }}>+
-                        </button>
-                    </td>
-                </tr>)}
-            </tbody>
-        </table>
+        <div>
+            <NewCategoryForm></NewCategoryForm>
+            <table className={props.className}>
+                <thead>
+                <tr>
+                    <td>Categories</td>
+                    <td>Keywords</td>
+                    <td></td>
+                </tr>
+                </thead>
+                <tbody>
+                {props.data.map((c: Category, index: number) =>
+                    <tr key={index}>
+                        <td onClick={() => deleteCategory({
+                            variables: {
+                                id: c.id,
+                            }
+                        })}>{c.name}</td>
+                        <td>
+                            {c.keywords.map((k: KeywordModel, index: number) =>
+                                <Keyword name={k.name} keywordId={k.id} categoryId={c.id} key={index}></Keyword>
+                            )}
+                        </td>
+                        <td>
+                            <button onClick={async () => {
+                                await createKeyword({
+                                    variables: {
+                                        categoryId: c.id,
+                                        name: `test${c.keywords.length}`
+                                    }
+                                });
+                            }}>+
+                            </button>
+                        </td>
+                    </tr>)}
+                </tbody>
+            </table>
+        </div>
     )
 }
 
