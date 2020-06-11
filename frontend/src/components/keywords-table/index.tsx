@@ -21,6 +21,16 @@ const _KeywordsTable = (props: OwnProps) => {
         }
     });
 
+    const [deleteCategory] = useMutation(DELETE_CATEGORY, {
+        update(cache, {data: {deleteCategory}}) {
+            const categories = cache.readQuery<{ categories: Category[] }>({query: GET_CATEGORIES})!.categories;
+            cache.writeQuery({
+                query: GET_CATEGORIES,
+                data: {categories: categories.filter(c => c.id !== deleteCategory.id)},
+            });
+        }
+    });
+
 
     return (
         <table>
