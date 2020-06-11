@@ -34,6 +34,12 @@
       & * {
         float: right;
       }
+
+      &__new-keyword {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+      }
     }
   }
 }
@@ -63,12 +69,20 @@
   }
 
   &__button {
-    background: lightgray;
-    padding: 10px 20px;
-    border: 0px;
-    border-radius: 50px;
-    color: gray;
-    font-weight: 600;
-    cursor: pointer;
+
+  }
+}
+
+.button {
+  background: lightgray;
+  padding: 10px 20px;
+  border: 0px;
+  border-radius: 50px;
+  color: gray;
+  font-weight: 600;
+  cursor: pointer;
+
+  &--circle {
+    padding: 10px;
   }
 }
