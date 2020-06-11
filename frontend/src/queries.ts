@@ -28,6 +28,19 @@ export const DELETE_KEYWORD = gql`
     }
 `;
 
+export const CREATE_CATEGORY = gql`
+    mutation createCategory($name: String!) {
+        createCategory(name: $name) {
+            id
+            name
+            keywords {
+                id
+                name
+            }
+        }
+    }
+`;
+
 export const DELETE_CATEGORY = gql`
     mutation deleteCategory($id: Float!) {
         deleteCategory(id: $id) {
