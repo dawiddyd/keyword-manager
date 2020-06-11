@@ -28,8 +28,8 @@ export class KeywordsResolver {
   }
 
   @Mutation(returns => Category, { name: 'createCategory' })
-  createCategory(@Args('name') name: string): Category {
-    return this.categoryService.createCategory(name);
+  async createCategory(@Args('name') name: string): Promise<Category> {
+    return await this.categoryService.createCategory(name);
   }
 
   @Mutation(returns => Category, { name: 'deleteCategory' })
