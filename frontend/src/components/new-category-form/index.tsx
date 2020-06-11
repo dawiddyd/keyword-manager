@@ -37,6 +37,7 @@ const _NewCategoryForm = (props: OwnProps) => {
                     onClick={async () => {
                         await createCategory();
                         setButtonVisible(false);
+                        setCategoryName(null);
                     }}></Button>}
             <Button title="+ AddCategory" className="new-category-form__button button"
                     onClick={() => setButtonVisible(!buttonVisible)}></Button>
