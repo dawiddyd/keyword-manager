@@ -3,6 +3,7 @@ import {useMutation} from "@apollo/client";
 import {CREATE_KEYWORD, GET_CATEGORIES} from "../../queries";
 import {toast} from "react-toastify";
 import {Category} from "../../models/category.model";
+import {Button} from "../button";
 
 interface OwnProps {
     categoryId: number;
@@ -33,12 +34,15 @@ const _NewKeywordForm = (props: OwnProps) => {
         <div className="new-keyword-form">
             {buttonVisible && <input className="new-keyword-form__name-input" placeholder="Keyword name"
                                      onChange={(event) => setKeywordName(event.target.value)} type="text"/>}
-            {buttonVisible && <button className="new-keyword-form__button button" onClick={async () => {
-                await createKeyword();
-                setButtonVisible(false)
-            }}>Save</button>}
-            <button className="new-keyword-form__button button" onClick={() => setButtonVisible(!buttonVisible)}>+
-            </button>
+            {buttonVisible &&
+            <Button title="Save" disabled={!keywordName} className="new-keyword-form__button button"
+                    onClick={async () => {
+                        await createKeyword();
+                        setButtonVisible(false);
+                        setKeywordName(null);
+                    }}></Button>}
+            <Button title="+" className="new-keyword-form__button button button--circle"
+                    onClick={() => setButtonVisible(!buttonVisible)}></Button>
         </div>
     );
 }
