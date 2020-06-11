@@ -1,0 +1,11 @@
+.keyword {
+  border: 1px solid $accent-color;
+  padding: 3px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin: 5px 20px 5px 0px;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}

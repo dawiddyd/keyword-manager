@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.scss';
+import './stylesheets/main.scss';
 import {useQuery} from '@apollo/client';
 import {GET_CATEGORIES} from "./queries";
 import {KeywordsTable} from "./components/keywords-table";

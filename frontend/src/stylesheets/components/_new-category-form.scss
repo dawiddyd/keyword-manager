@@ -1,0 +1,15 @@
+.new-category-form {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+
+  &__name-input {
+    border: 0px;
+    outline: none;
+    border-bottom: 1px solid $accent-color;
+  }
+
+  &__button {
+    margin-left: 10px;
+  }
+}
