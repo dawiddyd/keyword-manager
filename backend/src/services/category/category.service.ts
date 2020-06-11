@@ -16,12 +16,12 @@ export class CategoryService {
   }
 
   async createCategory(name: string): Promise<Category> {
-    // Creating new category with incremental id. Pre-filling with 10 keywords from server.
+    // Creates new category with incremental id. Pre-fills with 10 keywords from server.
     const id = Math.max(0, ...this.data.map(c => c.id)) + 1;
     const newCategory = { id: id, name, keywords: [] };
     try {
-      let res = await fetch(`https://api.datamuse.com/words?ml=${name}&max=10`);
-      let words = await res.json();
+      const res = await fetch(`https://api.datamuse.com/words?ml=${name}&max=10`);
+      const words = await res.json();
       words.map(((w, i) => {
         newCategory.keywords.push({ id: i, name: w.word });
       }));
@@ -33,6 +33,7 @@ export class CategoryService {
   }
 
   deleteCategory(id: number): Category {
+    // Deletes category from data if exist and returns it.
     const category = this.data.find(c => c.id === id);
     if (!category) {
       throw new NotFoundException(`Cannot find category with id: ${id}`);
