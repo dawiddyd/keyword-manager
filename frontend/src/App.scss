@@ -1,0 +1,74 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.keywords-table {
+  padding: 30px 50px 70px;
+  box-shadow: 0 0 15px lightgray;
+  border-radius: 30px;
+  width: 1024px;
+  border-collapse:separate;
+  border-spacing:0 10px;
+
+  thead {
+    td {
+      width: 30%;
+      color: lightgray;
+    }
+  }
+
+  .category-row {
+    .category-name {
+      font-weight: bolder;
+    }
+
+    .category-keywords {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .category-action {
+      & * {
+        float: right;
+      }
+    }
+  }
+}
+
+.keyword {
+  border: 1px solid orange;
+  padding: 3px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin: 5px 20px 5px 0px;
+
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.new-category-form {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+
+  &__name-input {
+    border: 0px;
+    outline: none;
+    border-bottom: 1px solid gray;
+  }
+
+  &__button {
+    background: lightgray;
+    padding: 10px 20px;
+    border: 0px;
+    border-radius: 50px;
+    color: gray;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
