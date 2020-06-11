@@ -44,7 +44,11 @@ const _KeywordsTable = (props: OwnProps) => {
             <tbody>
             {props.data.map((c: Category, index: number) =>
                 <tr key={index}>
-                    <td>{c.name}</td>
+                    <td onClick={() => deleteCategory({
+                        variables: {
+                            id: c.id,
+                        }
+                    })}>{c.name}</td>
                     <td>
                         {c.keywords.map((k: KeywordModel, index: number) =>
                             <Keyword name={k.name} keywordId={k.id} categoryId={c.id} key={index}></Keyword>
