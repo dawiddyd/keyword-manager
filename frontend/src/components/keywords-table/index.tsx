@@ -3,7 +3,7 @@ import {Category} from "../../models/category.model";
 import {Keyword as KeywordModel} from "../../models/keyword.model";
 import {Keyword} from "../keyword";
 import {useMutation} from "@apollo/client";
-import {CREATE_KEYWORD, DELETE_KEYWORD, GET_CATEGORIES} from "../../queries";
+import {CREATE_KEYWORD, DELETE_CATEGORY, GET_CATEGORIES} from "../../queries";
 
 interface OwnProps {
     data: Category[];
@@ -11,7 +11,6 @@ interface OwnProps {
 
 const _KeywordsTable = (props: OwnProps) => {
     const [categoryId, setCategoryId] = useState();
-    const refetchQueries = [{query: GET_CATEGORIES}];
     const [createKeyword] = useMutation(CREATE_KEYWORD, {
         update(cache, {data: {createKeyword}}) {
             const categories = cache.readQuery<{ categories: Category[] }>({query: GET_CATEGORIES})!.categories;
@@ -22,7 +21,6 @@ const _KeywordsTable = (props: OwnProps) => {
         }
     });
 
-    const [deleteKeyword] = useMutation(DELETE_KEYWORD, {refetchQueries: refetchQueries});
 
     return (
         <table>
@@ -39,13 +37,9 @@ const _KeywordsTable = (props: OwnProps) => {
                     <td>{c.name}</td>
                     <td>
                         {c.keywords.map((k: KeywordModel, index: number) =>
-                            <Keyword name={k.name} key={index} onClick={() => deleteKeyword({
-                                variables: {
-                                    categoryId: c.id,
-                                    keywordId: k.id
-                                }
-                            })
-                            }></Keyword>)}</td>
+                            <Keyword name={k.name} keywordId={k.id} categoryId={c.id} key={index}></Keyword>
+                        )}
+                    </td>
                     <td>
                         <button onClick={async () => {
                             await setCategoryId(c.id);
