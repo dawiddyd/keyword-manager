@@ -2,6 +2,7 @@ import React from 'react';
 import {useMutation} from "@apollo/client";
 import {DELETE_KEYWORD, GET_CATEGORIES} from "../../queries";
 import {toast} from "react-toastify";
+import {Category} from "../../models/category.model";
 
 interface OwnProps {
     name: string;
@@ -10,11 +11,16 @@ interface OwnProps {
 }
 
 const _Keyword = (props: OwnProps) => {
-    const refetchQueries = [{query: GET_CATEGORIES}];
     const [deleteKeyword] = useMutation(DELETE_KEYWORD, {
-        refetchQueries: refetchQueries,
+        update(cache, {data: {deleteKeyword}}) {
+            const categories = cache.readQuery<{ categories: Category[] }>({query: GET_CATEGORIES})!.categories;
+            cache.writeQuery({
+                query: GET_CATEGORIES,
+                data: {categories: categories.map(c => c.keywords.filter(k => k.id !== props.keywordId))},
+            });
+        },
         onCompleted(data) {
-            toast(`Successfully removed keyword`)
+            toast(`Successfully removed keyword`);
         }
     });
 
