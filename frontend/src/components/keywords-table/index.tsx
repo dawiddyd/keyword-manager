@@ -41,7 +41,7 @@ const _KeywordsTable = (props: OwnProps) => {
                 </thead>
                 <tbody>
                 {props.data.map((c: Category, index: number) =>
-                    <tr key={index} className="category-row">
+                    <tr key={index} className="category">
                         <td className="category-name" onClick={() => deleteCategory({
                             variables: {
                                 id: c.id,

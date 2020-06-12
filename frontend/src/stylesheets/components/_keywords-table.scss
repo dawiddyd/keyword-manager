@@ -12,17 +12,17 @@
     text-align: left;
   }
 
-  .category-row {
-    .category-name {
+  .category {
+    &-name {
       cursor: pointer;
     }
 
-    .category-keywords {
+    &-keywords {
       display: flex;
       flex-wrap: wrap;
     }
 
-    .category-action {
+    &-action {
       & * {
         float: right;
       }
