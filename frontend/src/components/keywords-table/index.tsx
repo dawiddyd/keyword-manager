@@ -58,6 +58,7 @@ const _KeywordsTable = (props: OwnProps) => {
                     </tr>)}
                 </tbody>
             </table>
+            <p><small>* Click on category name to delete it ;) Same with keywords!</small></p>
         </div>
     )
 }
