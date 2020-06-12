@@ -7,11 +7,16 @@
   font-weight: 600;
   cursor: pointer;
 
+  &-group-wrapper {
+    display: flex;
+    align-items: stretch;
+  }
+
   &--circle {
     border-radius: 50%;
     padding: 0;
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
     font-size: 16px;
   }
 

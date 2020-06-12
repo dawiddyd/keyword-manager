@@ -32,15 +32,17 @@ const _NewCategoryForm = (props: OwnProps) => {
         <div className="new-category-form">
             {buttonVisible && <input className="new-category-form__name-input" placeholder="Category name"
                                      onChange={(event) => setCategoryName(event.target.value)} type="text"/>}
-            {buttonVisible &&
-            <Button title={"Save"} disabled={!categoryName} className="new-category-form__button button"
-                    onClick={async () => {
-                        await createCategory();
-                        setButtonVisible(false);
-                        setCategoryName(null);
-                    }}></Button>}
-            <Button title="+ AddCategory" className="new-category-form__button button"
-                    onClick={() => setButtonVisible(!buttonVisible)}></Button>
+            <div className="button-group-wrapper">
+                {buttonVisible &&
+                <Button title={"Save"} disabled={!categoryName} className="new-category-form__button button"
+                        onClick={async () => {
+                            await createCategory();
+                            setButtonVisible(false);
+                            setCategoryName(null);
+                        }}></Button>}
+                <Button title="+ AddCategory" className="new-category-form__button button"
+                        onClick={() => setButtonVisible(!buttonVisible)}></Button>
+            </div>
         </div>
     );
 }

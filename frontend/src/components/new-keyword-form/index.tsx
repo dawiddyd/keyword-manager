@@ -34,15 +34,17 @@ const _NewKeywordForm = (props: OwnProps) => {
         <div className="new-keyword-form">
             {buttonVisible && <input className="new-keyword-form__name-input" placeholder="Keyword name"
                                      onChange={(event) => setKeywordName(event.target.value)} type="text"/>}
-            {buttonVisible &&
-            <Button title="Save" disabled={!keywordName} className="new-keyword-form__button button"
-                    onClick={async () => {
-                        await createKeyword();
-                        setButtonVisible(false);
-                        setKeywordName(null);
-                    }}></Button>}
-            <Button title="+" className="new-keyword-form__button button button--circle"
-                    onClick={() => setButtonVisible(!buttonVisible)}></Button>
+            <div className="button-group-wrapper">
+                {buttonVisible &&
+                <Button title="Save" disabled={!keywordName} className="new-keyword-form__button button"
+                        onClick={async () => {
+                            await createKeyword();
+                            setButtonVisible(false);
+                            setKeywordName(null);
+                        }}></Button>}
+                <Button title="+" className="new-keyword-form__button button button--circle"
+                        onClick={() => setButtonVisible(!buttonVisible)}></Button>
+            </div>
         </div>
     );
 }
