@@ -5,12 +5,13 @@ import {GET_CATEGORIES} from "./queries";
 import {KeywordsTable} from "./components/keywords-table";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { StatePage } from "./components/state-page";
 
 function App() {
     const {loading, error, data} = useQuery(GET_CATEGORIES);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
+    if (loading) return <StatePage title="Loading..."></StatePage>;
+    if (error) return <StatePage title="Error :(" message="Cannot connect to server"></StatePage>;
 
     return (
         <div className="App">
