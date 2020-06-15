@@ -7,6 +7,11 @@ import fetch from 'node-fetch';
 export class CategoryService {
   data = data;
 
+  /**
+   * Get category by identifier
+   * @param id Category id
+   * @returns Category
+   */
   getCategory(id: number): Category {
     const category = this.data.find(c => c.id === id);
     if (!category) {
@@ -15,8 +20,12 @@ export class CategoryService {
     return category;
   }
 
+  /**
+   * Creates new category with incremental id. Pre-fills with 10 keywords from server.
+   * @param name New category name
+   * @returns Category
+   */
   async createCategory(name: string): Promise<Category> {
-    // Creates new category with incremental id. Pre-fills with 10 keywords from server.
     const id = Math.max(0, ...this.data.map(c => c.id)) + 1;
     const newCategory = { id: id, name, keywords: [] };
     try {
@@ -32,8 +41,12 @@ export class CategoryService {
     return newCategory;
   }
 
+  /**
+   * Deletes category from data if exist and returns it.
+   * @param id Identifier of a Category to delete
+   * @returns Category
+   */
   deleteCategory(id: number): Category {
-    // Deletes category from data if exist and returns it.
     const category = this.data.find(c => c.id === id);
     if (!category) {
       throw new NotFoundException(`Cannot find category with id: ${id}`);

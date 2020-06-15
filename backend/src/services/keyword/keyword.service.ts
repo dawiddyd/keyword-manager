@@ -10,6 +10,11 @@ export class KeywordService {
     return this.data;
   }
 
+  /**
+   * Get keywords array by given category identifier
+   * @param id Category identifier
+   * @Returns Keyword[]
+   */
   getKeywordsByCategoryId(id: number): Keyword[] {
     const category = this.data.find(c => c.id === id);
     if (!category) {
@@ -18,8 +23,12 @@ export class KeywordService {
     return category.keywords;
   }
 
+  /**
+   * Creates new keyword and returns all keywords if target category exist.
+   * @param categoryId Category identifier
+   * @param name New keyword name
+   */
   createKeyword(categoryId: number, name: string): Keyword[] {
-    // Creates new keyword and returns all keywords if target category exist.
     const category = this.data.find(c => c.id === categoryId);
     if (!category) {
       throw new NotFoundException(`Cannot find category with id: ${categoryId}`);
@@ -32,8 +41,12 @@ export class KeywordService {
     return this.data.find(c => c.id === categoryId).keywords;
   }
 
+  /**
+   * Deletes specific keyword from target category if exist.
+   * @param categoryId Category identifier
+   * @param name New keyword name
+   */
   deleteKeyword(categoryId: number, keywordId: number): number {
-    // Deletes specific keyword from target category if exist.
     const category = this.data.find(c => c.id === categoryId);
     if (!category) {
       throw new NotFoundException(`Cannot find category with id: ${categoryId}`);
