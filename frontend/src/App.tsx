@@ -11,7 +11,7 @@ function App() {
     const {loading, error, data} = useQuery(GET_CATEGORIES);
 
     if (loading) return <StatePage title="Loading..."></StatePage>;
-    if (error) return <StatePage title="Error :(" message="Cannot connect to server"></StatePage>;
+    if (error) return <StatePage title="Error :(" message="Cannot connect to the server"></StatePage>;
 
     return (
         <div className="App">
