@@ -44,7 +44,7 @@ export class KeywordService {
   /**
    * Deletes specific keyword from target category if exist.
    * @param categoryId Category identifier
-   * @param name New keyword name
+   * @param keywordId Keyword identifier
    */
   deleteKeyword(categoryId: number, keywordId: number): number {
     const category = this.data.find(c => c.id === categoryId);
