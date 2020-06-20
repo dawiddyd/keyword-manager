@@ -27,6 +27,7 @@ export class KeywordService {
    * Creates new keyword and returns all keywords if target category exist.
    * @param categoryId Category identifier
    * @param name New keyword name
+   * @Returns Keyword[]
    */
   createKeyword(categoryId: number, name: string): Keyword[] {
     const category = this.data.find(c => c.id === categoryId);
@@ -45,6 +46,7 @@ export class KeywordService {
    * Deletes specific keyword from target category if exist.
    * @param categoryId Category identifier
    * @param keywordId Keyword identifier
+   * @Returns Keyword id
    */
   deleteKeyword(categoryId: number, keywordId: number): number {
     const category = this.data.find(c => c.id === categoryId);
